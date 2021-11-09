@@ -9,6 +9,9 @@ VSCODE_SUFFIX        := .json
 VSCODE_SETTING_FILES := $(wildcard $(VSCODE_TARGET_DIR)/*$(VSCODE_SUFFIX))
 VSCODE_EXTENSIONS    := ${shell cat $(VSCODE_TARGET_DIR)/extensions}
 
+BREW_TARGET_DIR      := brew
+BREW_FILE            := $(BREW_TARGET_DIR)/Brewfile
+
 # Create symlinks to dotfiles.
 deploy: deploy-dotfiles deploy-vscode
 
@@ -22,7 +25,7 @@ deploy-vscode:
 install: install-brew install-vscode
 
 install-brew:
-	@brew bundle --file 'Brewfile'
+	@brew bundle --file '$(BREW_FILE)'
 
 install-vscode:
 	@$(foreach val, $(VSCODE_EXTENSIONS), code --install-extension $(val);)
@@ -31,7 +34,7 @@ install-vscode:
 update: update-brew update-vscode
 
 update-brew:
-	@brew bundle dump --force
+	@brew bundle dump --force --file '$(BREW_FILE)'
 
 update-vscode:
 	@code --list-extensions > $(VSCODE_TARGET_DIR)/extensions
