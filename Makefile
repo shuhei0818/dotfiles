@@ -17,13 +17,16 @@ KARABINER_FILE       := $(KARABINER_SOURCE_DIR)/karabiner.json
 KARABINER_TARGET_DIR := ~/.config/karabiner
 
 # Create symlinks to dotfiles.
-deploy: deploy-dotfiles deploy-vscode
+deploy: deploy-dotfiles deploy-vscode　deploy-karabiner
 
 deploy-dotfiles:
 	@$(foreach val, $(DOTFILES_FILES), ln -sfnv $(abspath $(val)) $(HOME)/$(val);)
 
 deploy-vscode:
 	@$(foreach val, $(VSCODE_SETTING_FILES), ln -sfnv $(abspath $(val)) $(VSCODE_TARGET_DIR)/$(notdir $(val));)
+
+deploy-karabiner:
+	@ln -sfnv $(abspath $(KARABINER_FILE)) $(KARABINER_TARGET_DIR)/$(notdir $(KARABINER_FILE))
 
 # Install brew package and vscode extentions.
 install: install-brew install-vscode
@@ -33,9 +36,6 @@ install-brew:
 
 install-vscode:
 	@$(foreach val, $(VSCODE_EXTENSIONS), code --install-extension $(val);)
-
-install-karabiner:
-	@ln -sfnv $(abspath $(KARABINER_FILE)) $(KARABINER_TARGET_DIR)/$(notdir $(KARABINER_FILE))
 
 # Update brewfile and vscode extentions.
 update: update-brew update-vscode
