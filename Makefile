@@ -3,14 +3,18 @@ DOTFILES_TARGET      := $(wildcard .??*) bin
 DOTFILES_DIR         := $(PWD)
 DOTFILES_FILES       := $(filter-out $(DOTFILES_EXCLUDES), $(DOTFILES_TARGET))
 
-VSCODE_TARGET_DIR    := vscode
-VSCODE_SOURCE_DIR    := ~/Library/Application\ Support/Code/User
+VSCODE_SOURCE_DIR    := vscode
+VSCODE_TARGET_DIR    := ~/Library/Application\ Support/Code/User
 VSCODE_SUFFIX        := .json
-VSCODE_SETTING_FILES := $(wildcard $(VSCODE_TARGET_DIR)/*$(VSCODE_SUFFIX))
-VSCODE_EXTENSIONS    := ${shell cat $(VSCODE_TARGET_DIR)/extensions}
+VSCODE_SETTING_FILES := $(wildcard $(VSCODE_SOURCE_DIR)/*$(VSCODE_SUFFIX))
+VSCODE_EXTENSIONS    := ${shell cat $(VSCODE_SOURCE_DIR)/extensions}
 
-BREW_TARGET_DIR      := brew
-BREW_FILE            := $(BREW_TARGET_DIR)/Brewfile
+BREW_SOURCE_DIR      := brew
+BREW_FILE            := $(BREW_SOURCE_DIR)/Brewfile
+
+KARABINER_SOURCE_DIR := karabiner
+KARABINER_FILE       := $(KARABINER_SOURCE_DIR)/karabiner.json
+KARABINER_TARGET_DIR := ~/.config/karabiner
 
 # Create symlinks to dotfiles.
 deploy: deploy-dotfiles deploy-vscode
@@ -19,7 +23,7 @@ deploy-dotfiles:
 	@$(foreach val, $(DOTFILES_FILES), ln -sfnv $(abspath $(val)) $(HOME)/$(val);)
 
 deploy-vscode:
-	@$(foreach val, $(VSCODE_SETTING_FILES), ln -sfnv $(abspath $(val)) $(VSCODE_SOURCE_DIR)/$(notdir $(val));)
+	@$(foreach val, $(VSCODE_SETTING_FILES), ln -sfnv $(abspath $(val)) $(VSCODE_TARGET_DIR)/$(notdir $(val));)
 
 # Install brew package and vscode extentions.
 install: install-brew install-vscode
@@ -30,6 +34,9 @@ install-brew:
 install-vscode:
 	@$(foreach val, $(VSCODE_EXTENSIONS), code --install-extension $(val);)
 
+install-karabiner:
+	@ln -sfnv $(abspath $(KARABINER_FILE)) $(KARABINER_TARGET_DIR)/$(notdir $(KARABINER_FILE))
+
 # Update brewfile and vscode extentions.
 update: update-brew update-vscode
 
@@ -37,4 +44,4 @@ update-brew:
 	@brew bundle dump --force --file '$(BREW_FILE)'
 
 update-vscode:
-	@code --list-extensions > $(VSCODE_TARGET_DIR)/extensions
+	@code --list-extensions > $(VSCODE_SOURCE_DIR)/extensions
