@@ -17,7 +17,7 @@ KARABINER_FILE       := $(KARABINER_SOURCE_DIR)/karabiner.json
 KARABINER_TARGET_DIR := ~/.config/karabiner
 
 # Create symlinks to dotfiles.
-deploy: deploy-dotfiles deploy-vscode　deploy-karabiner
+deploy: deploy-dotfiles deploy-vscode deploy-karabiner
 
 deploy-dotfiles:
 	@$(foreach val, $(DOTFILES_FILES), ln -sfnv $(abspath $(val)) $(HOME)/$(val);)
