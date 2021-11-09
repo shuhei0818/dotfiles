@@ -9,7 +9,7 @@
 !/.zshrc
 
 # brew
-!/Brewfile
+!/brew
 
 # script
 !/bin
