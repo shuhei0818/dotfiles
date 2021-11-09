@@ -1,0 +1,26 @@
+/*
+/.**
+
+#
+# white list
+# 
+# zsh
+!/.zprofile
+!/.zshrc
+
+# script
+!/bin
+
+# git
+!/.commit_template
+!/.gitconfig
+
+# vscode
+!/vscode
+
+# etc
+!/README.md
+!/LICENSE
+!/Makefile
+!.gitignore
+!.gitkeep

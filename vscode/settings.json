@@ -1,0 +1,10 @@
+{
+    "workbench.colorTheme": "Default Dark+",
+    "terminal.integrated.fontSize": 18,
+    "editor.fontSize": 18,
+    "explorer.confirmDragAndDrop": false,
+    "[Makefile]": {
+        "editor.insertSpaces": false
+    },
+    "explorer.confirmDelete": false
+}
