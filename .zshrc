@@ -25,11 +25,14 @@ alias ll="ls -l"
 alias lla="ls -la"
 
 if type brew &>/dev/null; then
-  # zsh-completion
+  # github-cli
+  FPATH=$(brew --prefix)/share/zsh/site-functions/:$FPATH
+
+  # zsh-completions
   FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 
   autoload -Uz compinit
-  compinit
+  compinit -i
 
   # zsh-autosuggestions
   source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
