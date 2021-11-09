@@ -8,6 +8,10 @@
 !/.zprofile
 !/.zshrc
 
+# brew
+!/Brewfile
+!/Brewfile.lock.json
+
 # script
 !/bin
 
