@@ -58,8 +58,8 @@ if type brew &>/dev/null; then
     fi
   }
 
-  precmd() { 
+  precmd() {
     git_prompt
   }
-  
+
 fi

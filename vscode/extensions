@@ -1,4 +1,7 @@
 bierner.markdown-preview-github-styles
+EditorConfig.EditorConfig
+exiasr.hadolint
+foxundermoon.shell-format
 golang.go
 hediet.vscode-drawio
 mhutchie.git-graph
@@ -7,4 +10,5 @@ MS-CEINTL.vscode-language-pack-ja
 ms-vscode-remote.remote-containers
 ms-vscode.cpptools
 ritwickdey.LiveServer
+timonwong.shellcheck
 yzhang.markdown-all-in-one

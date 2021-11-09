@@ -3,7 +3,7 @@
 
 #
 # white list
-# 
+#
 # zsh
 !/.zprofile
 !/.zshrc
@@ -13,6 +13,9 @@
 
 # script
 !/bin
+
+# editorconfig
+!/.editorconfig
 
 # git
 !/.commit_template

@@ -2,10 +2,9 @@
     "workbench.colorTheme": "Default Dark+",
     "editor.fontFamily": "SF Mono, Menlo, Monaco, 'Courier New', monospace",
     "editor.minimap.enabled": false,
+    "editor.formatOnSave": true,
     "explorer.confirmDragAndDrop": false,
     "explorer.confirmDelete": false,
-    "[Makefile]": {
-        "editor.insertSpaces": false
-    },
-    "workbench.startupEditor": "none"
+    "workbench.startupEditor": "none",
+    "diffEditor.ignoreTrimWhitespace": false
 }
