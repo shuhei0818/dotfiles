@@ -1,12 +1,11 @@
 {
     "workbench.colorTheme": "Default Dark+",
-    "editor.fontSize": 18,
     "editor.fontFamily": "SF Mono, Menlo, Monaco, 'Courier New', monospace",
     "editor.minimap.enabled": false,
-    "terminal.integrated.fontSize": 18,
     "explorer.confirmDragAndDrop": false,
     "explorer.confirmDelete": false,
     "[Makefile]": {
         "editor.insertSpaces": false
-    }
+    },
+    "workbench.startupEditor": "none"
 }
