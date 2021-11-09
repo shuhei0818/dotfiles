@@ -5,10 +5,10 @@
         "revision": "e11704f58688da7e9d0192d08ff2b31c252a2f6b"
       },
       "homebrew/cask": {
-        "revision": "5a6cb1e0dc1e8a32090180df4afd6b880eed272c"
+        "revision": "d28407ac9cccb9966010995ca7f073b1d8e8cd1f"
       },
       "homebrew/core": {
-        "revision": "5bb812e2a9a0dca44494a0425be0e14730350270"
+        "revision": "ec64d6dd8537b662ecb84a500508a89aa12e77fe"
       }
     },
     "cask": {
@@ -178,6 +178,20 @@
             }
           }
         }
+      },
+      "zsh-completions": {
+        "version": "0.33.0_1",
+        "bottle": {
+          "rebuild": 0,
+          "root_url": "https://ghcr.io/v2/homebrew/core",
+          "files": {
+            "all": {
+              "cellar": ":any_skip_relocation",
+              "url": "https://ghcr.io/v2/homebrew/core/zsh-completions/blobs/sha256:eab228532a15b1c8eddfd38f46306cf723e6f331d38c8874d0305d6fe888ab70",
+              "sha256": "eab228532a15b1c8eddfd38f46306cf723e6f331d38c8874d0305d6fe888ab70"
+            }
+          }
+        }
       }
     }
   },
@@ -186,7 +200,7 @@
       "monterey": {
         "HOMEBREW_VERSION": "3.3.3",
         "HOMEBREW_PREFIX": "/opt/homebrew",
-        "Homebrew/homebrew-core": "5bb812e2a9a0dca44494a0425be0e14730350270",
+        "Homebrew/homebrew-core": "ec64d6dd8537b662ecb84a500508a89aa12e77fe",
         "CLT": "13.1.0.0.1.1633545042",
         "Xcode": "13.0",
         "macOS": "12.0.1"

@@ -1,3 +1,5 @@
+SHELL=/bin/zsh
+
 DOTFILES_EXCLUDES    := .DS_Store .git .gitmodules .travis.yml
 DOTFILES_TARGET      := $(wildcard .??*) bin
 DOTFILES_DIR         := $(PWD)
@@ -33,6 +35,7 @@ install: install-brew install-vscode
 
 install-brew:
 	@brew bundle --file '$(BREW_FILE)'
+	@chmod -R go-w /opt/homebrew/share; rm -f ~/.zcompdump; autoload -Uz compinit; compinit
 
 install-vscode:
 	@$(foreach val, $(VSCODE_EXTENSIONS), code --install-extension $(val);)

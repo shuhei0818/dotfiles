@@ -1,16 +1,8 @@
 [
-    {
-        "key": "cmd+`",
-        "command": "workbench.action.terminal.focus",
-        "when": "editorTextFocus"
-    },
-    {
-        "key": "cmd+`",
-        "command": "workbench.action.focusFirstEditorGroup",
-        "when": "terminalFocus"
-    },
-    {
-        "key": "ctrl+shift+q",
-        "command": "workbench.action.toggleMaximizedPanel"
-    }
+    {"key": "cmd+`", "command": "workbench.action.terminal.focus", "when": "editorTextFocus"},
+    {"key": "cmd+`", "command": "workbench.action.focusFirstEditorGroup", "when": "terminalFocus"},
+    {"key": "ctrl+shift+q","command": "workbench.action.toggleMaximizedPanel"},
+    {"key": "cmd+=", "command": "editor.action.fontZoomIn", "when": "editorTextFocus"},
+    {"key": "cmd+-", "command": "editor.action.fontZoomOut", "when": "editorTextFocus"},
+    {"key": "cmd+0", "command": "editor.action.fontZoomReset"}
 ]
