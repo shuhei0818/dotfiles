@@ -22,3 +22,5 @@
 	cookiefile = ~/.gitcookies
 [commit]
 	template = ~/.commit_template
+[ghq]
+	root = ~/develop
