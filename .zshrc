@@ -104,6 +104,15 @@ function peco-ghq-code () {
 zle -N peco-ghq-code
 bindkey '^g' peco-ghq-code
 
+# ghq with
+function peco-ghq-gh () {
+    local destination=$(ghq list | peco --prompt "ghw ❯")
+    if [ -n "$destination" ]; then
+        gh repo view -w ${destination}
+    fi
+}
+alias ghw=peco-ghq-gh
+
 precmd() {
     git_prompt
 }
