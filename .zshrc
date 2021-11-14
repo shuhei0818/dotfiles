@@ -104,7 +104,7 @@ alias ghv=peco-ghq-code
 
 # ghq with github-cli web
 function peco-ghq-gh () {
-    local destination=$(ghq list | peco --prompt "ghw ❯")
+    local destination=$(gh repo list | awk '{print $1}' | peco --prompt "ghw ❯")
     if [ -n "$destination" ]; then
         gh repo view -w ${destination}
     fi
