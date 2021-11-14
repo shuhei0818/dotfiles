@@ -102,7 +102,7 @@ function peco-ghq-code () {
 }
 alias ghv=peco-ghq-code
 
-# ghq with
+# ghq with github-cli web
 function peco-ghq-gh () {
     local destination=$(ghq list | peco --prompt "ghw ❯")
     if [ -n "$destination" ]; then
