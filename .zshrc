@@ -73,7 +73,7 @@ git_prompt() {
     fi
 }
 
-# history with peco ctr+r
+# history with peco
 function peco-select-history() {
     BUFFER=$(history -n 1 | tail -r | awk '!a[$0]++' | peco --prompt "history ❯")
     CURSOR=$#BUFFER
@@ -82,7 +82,7 @@ function peco-select-history() {
 zle -N peco-select-history
 bindkey '^r' peco-select-history
 
-# cdr with peco ctr+e
+# cdr with peco
 function peco-cdr() {
     local destination="$(cdr -l | sed 's/^[0-9]* *//' | peco --prompt "cdr ❯" --query "$LBUFFER")"
     if [ -n "$destination" ]; then
@@ -93,16 +93,14 @@ function peco-cdr() {
 zle -N peco-cdr
 bindkey '^e' peco-cdr
 
-# ghq with peco ctrl+g
+# ghq with vscode
 function peco-ghq-code () {
-    local destination=$(ghq list -p | peco --prompt "vscode ❯" --query "$LBUFFER")
+    local destination=$(ghq list -p | peco --prompt "ghv ❯")
     if [ -n "$destination" ]; then
-        BUFFER="code ${destination}"
-        zle accept-line
+        code ${destination}
     fi
 }
-zle -N peco-ghq-code
-bindkey '^g' peco-ghq-code
+alias ghv=peco-ghq-code
 
 # ghq with
 function peco-ghq-gh () {
