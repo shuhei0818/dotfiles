@@ -113,9 +113,9 @@ alias ghw=peco-ghq-gh
 
 # docker with peco
 function peco-docker-exec () {
-    local destination=$(docker ps --format "{{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Command}}\t{{.RunningFor}}" | peco --prompt "dexec ❯" | cut -f 1)
+    local destination=$(docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Command}}\t{{.Status}}\t{{.Names}}" | sed 1d | peco --prompt "dexec ❯" | awk '{print $1}')
     if [ -n "$destination" ]; then
-        docker exec -it ${destination} sh
+        docker exec -it ${destination} /bin/bash || docker exec -it ${destination} sh
     fi
 }
 alias dexec=peco-docker-exec
