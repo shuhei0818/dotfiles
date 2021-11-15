@@ -9,7 +9,7 @@ path=(
   /sbin
   /usr/local/bin(N-/)
   /usr/local/sbin(N-/)
-  ~/bin/
+  ~/bin
 )
 
 # history
@@ -110,6 +110,15 @@ function peco-ghq-gh () {
     fi
 }
 alias ghw=peco-ghq-gh
+
+# docker with peco
+function peco-docker-exec () {
+    local destination=$(docker ps --format "{{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Command}}\t{{.RunningFor}}" | peco --prompt "dexec ❯" | cut -f 1)
+    if [ -n "$destination" ]; then
+        docker exec -it ${destination} sh
+    fi
+}
+alias dexec=peco-docker-exec
 
 precmd() {
     git_prompt
