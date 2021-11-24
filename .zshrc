@@ -9,6 +9,7 @@ path=(
   /sbin
   /usr/local/bin(N-/)
   /usr/local/sbin(N-/)
+  $(go env GOPATH)/bin
   ~/bin
 )
 
