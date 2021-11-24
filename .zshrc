@@ -92,7 +92,7 @@ function peco-cdr() {
     fi
 }
 zle -N peco-cdr
-bindkey '^e' peco-cdr
+bindkey '^t' peco-cdr
 
 # ghq with vscode
 function peco-ghq-code () {
