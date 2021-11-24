@@ -1,0 +1,36 @@
+#!/bin/bash
+
+set -euC
+
+PORT=':8080'
+
+function parse_args() {
+    while getopts "p:" OPT; do
+        case "$OPT" in
+        p) PORT="$OPTARG" ;;
+        ?) usage ;;
+        esac
+    done
+}
+
+function godoc-web() {
+    local port="$1"
+    GO111MODULE=off godoc -http "$port" -analysis=type
+}
+
+function open-chrome() {
+    local port="$1"
+
+    open -a '/Applications/Google Chrome.app' "http://localhost$port"
+}
+
+function main() {
+    local port="$1"
+
+    godoc-web "$port" | open-chrome "$port"
+}
+
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    parse_args "$@"
+    main "$PORT"
+fi
