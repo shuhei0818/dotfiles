@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euC
+
 gh repo create "$@"
 ghq get "$1"
 code "$(ghq list --full-path -e "$1")"
