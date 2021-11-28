@@ -66,7 +66,7 @@ ZSH_THEME_GIT_PROMPT_BEHIND="%{$fg[red]%}%{-%G%}"
 ZSH_THEME_GIT_PROMPT_AHEAD="%{$fg[green]%}%{+%G%}"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[green]%}%{✔%G%}"
 
-git_prompt() {
+function git_prompt() {
     if [ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" = true ]; then
         PROMPT="%F{074}%n@$(arch)%f %F{142}%1~%f $(git_super_status) %# "
     else
