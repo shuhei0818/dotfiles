@@ -1,0 +1,59 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "go run",
+            "type": "shell",
+            "command": "go",
+            "args": [
+                "run",
+                "${file}"
+            ],
+            "problemMatcher": [
+                "$go"
+            ],
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+                "focus": "true"
+            }
+        },
+        {
+            "label": "go test",
+            "type": "shell",
+            "command": "go",
+            "args": [
+                "test",
+                "-v",
+                "${file}"
+            ],
+            "problemMatcher": [
+                "$go"
+            ],
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+                "focus": "true"
+            }
+        },
+        {
+            "label": "go bench",
+            "type": "shell",
+            "command": "go",
+            "args": [
+                "test",
+                "-bench",
+                ".",
+                "${file}"
+            ],
+            "problemMatcher": [
+                "$go"
+            ],
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+                "focus": "true"
+            }
+        }
+    ]
+}
