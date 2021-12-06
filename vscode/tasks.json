@@ -21,10 +21,11 @@
         {
             "label": "go test",
             "type": "shell",
-            "command": "go",
+            "command": "gotest-vscode",
             "args": [
-                "test",
-                "-v",
+                "-l",
+                "${lineNumber}",
+                "-s",
                 "${file}"
             ],
             "problemMatcher": [

@@ -1,0 +1,75 @@
+#!/bin/bash
+
+set -uC
+
+INPUT_FILE=
+LINE_NUMBER=
+
+function init() {
+    if ! type go >/dev/null 2>&1; then
+        echo "Please install Go."
+        exit 1
+    fi
+
+    if ! type goffn >/dev/null 2>&1; then
+        echo "Please install goffn. See https://github.com/shuhei0818/go-find-function-name."
+        exit 1
+    fi
+}
+
+function usage() {
+    cat <<EOS >&2
+Usage: $0 [-s INPUT_FILE] [-l LINE_NUMBER]
+  -s INPUT_FILE   input file
+  -l LINE_NUMBER  line number containing the target function
+EOS
+    exit 1
+}
+
+function parse_args() {
+    while getopts "l:s:" OPT; do
+        case "$OPT" in
+        l) LINE_NUMBER="$OPTARG" ;;
+        s) INPUT_FILE="$OPTARG" ;;
+        ?) usage ;;
+        esac
+    done
+
+    if [ -z "$INPUT_FILE" ]; then
+        usage
+    fi
+}
+
+function testFile() {
+    go test -v "$INPUT_FILE"
+}
+
+function testFunc() {
+    local fn="$1"
+    go test -v -run "$fn"
+}
+
+function main() {
+    local filename="$1"
+    local line="$2"
+
+    local fn
+    goffn -s "$filename" -l "$line" 1>/dev/null 2>&1
+    if [ "$?" -ne 0 ]; then
+        testFile
+    else
+        fn=$(goffn -s "$filename" -l "$line")
+
+        if [[ ! $fn =~ ^Test ]]; then
+            testFile
+        fi
+
+        testFunc "$fn"
+    fi
+}
+
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    init
+    parse_args "$@"
+    main "$INPUT_FILE" "$LINE_NUMBER"
+fi

@@ -8,7 +8,7 @@ function parse_args() {
     while getopts "p:" OPT; do
         case "$OPT" in
         p) PORT="$OPTARG" ;;
-        ?) usage ;;
+        ?) ;;
         esac
     done
 }
