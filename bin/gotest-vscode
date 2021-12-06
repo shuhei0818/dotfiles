@@ -62,6 +62,7 @@ function main() {
 
         if [[ ! $fn =~ ^Test ]]; then
             testFile
+            return
         fi
 
         testFunc "$fn"
