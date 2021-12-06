@@ -15,7 +15,6 @@
             "presentation": {
                 "reveal": "always",
                 "panel": "shared",
-                "focus": "true"
             }
         },
         {
@@ -34,7 +33,6 @@
             "presentation": {
                 "reveal": "always",
                 "panel": "shared",
-                "focus": "true"
             }
         },
         {
@@ -54,7 +52,6 @@
             "presentation": {
                 "reveal": "always",
                 "panel": "shared",
-                "focus": "true"
             }
         }
     ]
