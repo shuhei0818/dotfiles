@@ -54,17 +54,10 @@ function main() {
     local line="$2"
 
     local fn
-    goffn -s "$filename" -l "$line" 1>/dev/null 2>&1
-    if [ "$?" -ne 0 ]; then
+    fn=$(goffn -s "$filename" -l "$line" 2>/dev/null)
+    if [[ ! $fn =~ ^Test ]]; then
         testFile
     else
-        fn=$(goffn -s "$filename" -l "$line")
-
-        if [[ ! $fn =~ ^Test ]]; then
-            testFile
-            return
-        fi
-
         testFunc "$fn"
     fi
 }
