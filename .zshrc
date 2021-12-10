@@ -9,9 +9,9 @@ path=(
   /sbin
   /usr/local/bin(N-/)
   /usr/local/sbin(N-/)
-  ~/go/bin
   ~/bin
 )
+path+=$(go env GOPATH)/bin
 
 # history
 HISTFILE=$HOME/.zsh-history
@@ -34,6 +34,8 @@ alias ls="ls -GF"
 alias la="ls -a"
 alias ll="ls -l"
 alias lla="ls -la"
+
+alias relogin='exec $SHELL -l'
 
 # Homebrew
 export HOMEBREW_CASK_OPTS=--no-quarantine
