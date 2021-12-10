@@ -24,7 +24,6 @@
             "args": [
                 "-l",
                 "${lineNumber}",
-                "-s",
                 "${file}"
             ],
             "problemMatcher": [

@@ -19,25 +19,28 @@ function init() {
 
 function usage() {
     cat <<EOS >&2
-Usage: $0 [-s INPUT_FILE] [-l LINE_NUMBER]
-  -s INPUT_FILE   input file
-  -l LINE_NUMBER  line number containing the target function
+Usage: $0 [-l line_number] filename
+  -l line_number  line number containing the target function
 EOS
     exit 1
 }
 
 function parse_args() {
-    while getopts "l:s:" OPT; do
+    while getopts "l:" OPT; do
         case "$OPT" in
         l) LINE_NUMBER="$OPTARG" ;;
-        s) INPUT_FILE="$OPTARG" ;;
         ?) usage ;;
         esac
     done
 
-    if [ -z "$INPUT_FILE" ]; then
+    shift $((OPTIND - 1))
+
+    INPUT_FILE=${1:-}
+
+    if [[ "$INPUT_FILE" == "" ]]; then
         usage
     fi
+
 }
 
 function testFile() {
@@ -54,11 +57,11 @@ function main() {
     local line="$2"
 
     local fn
-    fn=$(goffn -s "$filename" -l "$line" 2>/dev/null)
-    if [[ ! $fn =~ ^Test ]]; then
-        testFile
-    else
+    fn=$(goffn -l "$line" "$filename" 2>/dev/null)
+    if [[ $fn =~ ^Test ]]; then
         testFunc "$fn"
+    else
+        testFile
     fi
 }
 
