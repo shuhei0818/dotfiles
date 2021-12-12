@@ -29,3 +29,7 @@ $ brew outdated --cask #GUI
 $ brew upgrade # CUI
 $ brew upgrade --cask --greedy # GUI
 ```
+## Java
+```bash
+sudo ln -sfn /opt/homebrew/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
+```

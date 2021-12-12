@@ -3,6 +3,7 @@ typeset -U path PATH
 path=(
   /opt/homebrew/bin(N-/)
   /opt/homebrew/sbin(N-/)
+  /opt/homebrew/opt/openjdk/bin(N-/) # Java
   /usr/bin
   /usr/sbin
   /bin
