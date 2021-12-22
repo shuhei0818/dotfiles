@@ -33,3 +33,7 @@ quote_type = double
 # Makefile
 [Makefile]
 indent_style = tab
+
+# Markdown
+[*.{md,txt}]
+trim_trailing_whitespace = false
