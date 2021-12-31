@@ -35,6 +35,7 @@ alias ls="ls -GF"
 alias la="ls -a"
 alias ll="ls -l"
 alias lla="ls -la"
+alias rm="rm -i"
 
 alias relogin='exec $SHELL -l'
 
