@@ -2,6 +2,55 @@
 
 set -euC
 
-gh repo create "$@"
-ghq get "$1"
-code "$(ghq list --full-path -e "$1")"
+VISIBILITY=
+REPOSITORY_NAME=
+LICENSE='MIT'
+
+function usage() {
+    cat <<EOS >&2
+Usage: $0 [ --private | --public ] repository_name
+  --private   Make the new repository private
+  --public    Make the new repository public
+EOS
+    exit 1
+}
+
+function parse_args() {
+    while getopts ":-:" opt; do
+        case "$opt" in
+        -)
+            case "${OPTARG}" in
+            private)
+                VISIBILITY='--private'
+                ;;
+            public)
+                VISIBILITY='--public'
+                ;;
+            esac
+            ;;
+        ?) usage ;;
+        esac
+    done
+
+    shift $((OPTIND - 1))
+
+    REPOSITORY_NAME=${1:-}
+
+    if [[ "$REPOSITORY_NAME" == "" ]]; then
+        usage
+    fi
+}
+
+function main() {
+    local visibility="$1"
+    local repository_name="$2"
+
+    gh repo create "$visibility" --license "$LICENSE" "$repository_name"
+    ghq get "$repository_name"
+    code "$(ghq list --full-path -e "$repository_name")"
+}
+
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    parse_args "$@"
+    main "$VISIBILITY" "$REPOSITORY_NAME"
+fi
