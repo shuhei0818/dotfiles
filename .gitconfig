@@ -24,5 +24,4 @@
 	template = ~/.commit_template
 [ghq]
 	root = ~/dotfiles
-    root = ~/develop/gitlab.com
-    root = ~/develop/github.com/shuhei0818
+    root = ~/develop

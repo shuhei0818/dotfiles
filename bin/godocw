@@ -15,7 +15,8 @@ function parse_args() {
 
 function godoc-web() {
     local port="$1"
-    GO111MODULE=off godoc -http "$port" -analysis=type
+    # GO111MODULE=off godoc -http "$port" -analysis=type
+    godoc -http "$port"
 }
 
 function open-chrome() {
