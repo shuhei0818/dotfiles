@@ -4,6 +4,7 @@ path=(
   /opt/homebrew/bin(N-/)
   /opt/homebrew/sbin(N-/)
   /opt/homebrew/opt/openjdk/bin(N-/) # Java
+  $HOME/.volta/bin(N-/) # JavaScript
   /usr/bin
   /usr/sbin
   /bin
