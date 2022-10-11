@@ -10,7 +10,8 @@ ms-azuretools.vscode-docker
 MS-CEINTL.vscode-language-pack-ja
 ms-vscode-remote.remote-containers
 ms-vscode.cpptools
+ms-vscode.hexeditor
 ritwickdey.LiveServer
 timonwong.shellcheck
-yzhang.markdown-all-in-one
 yzane.markdown-pdf
+yzhang.markdown-all-in-one
