@@ -2,6 +2,7 @@
 
 ## Install [Homebrew](https://brew.sh/) brew package and vscode extentions.
 ```bash
+$ curl -L raw.github.com/shuhei0818/dotfiles/main/download.sh | bash
 $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 $ make install
 ```
@@ -29,7 +30,4 @@ $ brew outdated --cask #GUI
 $ brew upgrade # CUI
 $ brew upgrade --cask --greedy # GUI
 ```
-## Java
-```bash
-sudo ln -sfn /opt/homebrew/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
-```
+

@@ -3,8 +3,6 @@ typeset -U path PATH
 path=(
   /opt/homebrew/bin(N-/)
   /opt/homebrew/sbin(N-/)
-  /opt/homebrew/opt/openjdk/bin(N-/) # Java
-  $HOME/.volta/bin(N-/) # JavaScript
   /usr/bin
   /usr/sbin
   /bin
@@ -13,7 +11,14 @@ path=(
   /usr/local/sbin(N-/)
   ~/bin
 )
-path+=$(go env GOPATH)/bin
+path+=(
+  $(go env GOPATH)/bin #Go
+  $HOME/.jenv/bin # Java
+  $HOME/.volta/bin(N-/) # JavaScript
+)
+
+# jenv
+eval "$(jenv init -)"
 
 # history
 HISTFILE=$HOME/.zsh-history
