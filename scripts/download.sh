@@ -4,8 +4,7 @@ set -euC
 
 DOTFILES_GITHUB="https://github.com/shuhei0818/dotfiles.git"
 DOTFILES_TARBALL="https://github.com/shuhei0818/dotfiles/archive/master.tar.gz"
-# DOTPATH=~/dotfiles
-DOTPATH=/Users/shuhei/develop/tmp/sample
+DOTPATH=~/dotfiles
 
 function is_exists() {
     which "$1" >/dev/null 2>&1
@@ -44,8 +43,8 @@ function dotfiles_download() {
 
 function main() {
     dotfiles_download
-    cd "${DOTPATH}/scripts"
-    bash install.sh
+    cd "${DOTPATH}"
+    bash ./scripts/install.sh
 }
 
 main

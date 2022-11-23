@@ -1,23 +1,17 @@
 # Dotfiles
 
-## Install [Homebrew](https://brew.sh/) brew package and vscode extentions.
+## Install
 ```bash
-$ curl -L raw.github.com/shuhei0818/dotfiles/main/download.sh | bash
-$ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-$ make install
+$ curl -L raw.github.com/shuhei0818/dotfiles/main/scripts/download.sh | bash
 ```
 
-## Create symlinks to dotfiles.
-```bash
-$ make deploy
-```
-
-## Update brewfile and vscode extentions.
+## Update
+### brewfile and vscode extentions.
 ```bash
 $ make update
 ```
 
-## Homebrew
+### Homebrew
 ```bash
 # Update homebrew & fix software.
 $ brew update

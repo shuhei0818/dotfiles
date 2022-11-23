@@ -37,7 +37,6 @@ install: install-brew install-vscode
 
 install-brew:
 	@brew bundle --file '$(BREW_FILE)'
-	@chmod -R go-w /opt/homebrew/share; rm -f ~/.zcompdump; autoload -Uz compinit; compinit
 
 install-vscode:
 	@$(foreach val, $(VSCODE_EXTENSIONS), code --install-extension $(val);)
