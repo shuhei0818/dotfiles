@@ -12,6 +12,7 @@
 !/brew
 
 # script
+!/scripts
 !/bin
 
 # editorconfig
