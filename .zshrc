@@ -15,6 +15,7 @@ path+=(
   $(go env GOPATH)/bin #Go
   $HOME/.jenv/bin # Java
   $HOME/.volta/bin(N-/) # JavaScript
+  /opt/homebrew/opt/mysql-client/bin #mysql
 )
 
 # jenv
@@ -84,55 +85,15 @@ function git_prompt() {
     fi
 }
 
-# history with peco
-function peco-select-history() {
-    BUFFER=$(history -n 1 | tail -r | awk '!a[$0]++' | peco --prompt "history ❯")
-    CURSOR=$#BUFFER
-    zle clear-screen
-}
-zle -N peco-select-history
-bindkey '^r' peco-select-history
+source $HOME/bin/pecofunc
 
-# cdr with peco
-function peco-cdr() {
-    local destination="$(cdr -l | sed 's/^[0-9]* *//' | peco --prompt "cdr ❯" --query "$LBUFFER")"
-    if [ -n "$destination" ]; then
-        BUFFER="cd $destination"
-        zle accept-line
-    fi
-}
-zle -N peco-cdr
-bindkey '^t' peco-cdr
-
-# ghq with vscode
-function peco-ghq-code () {
-    local destination=$(ghq list -p | peco --prompt "ghv ❯")
-    if [ -n "$destination" ]; then
-        code ${destination}
-    fi
-}
-alias ghv=peco-ghq-code
-
-# ghq with github-cli web
-function peco-ghq-gh () {
-    local destination=$(gh repo list | awk '{print $1}' | peco --prompt "ghw ❯")
-    if [ -n "$destination" ]; then
-        gh repo view -w ${destination}
-    fi
-}
-alias ghw=peco-ghq-gh
-
-# docker with peco
-function peco-docker-exec () {
-    local destination=$(docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Command}}\t{{.Status}}\t{{.Names}}" | sed 1d | peco --prompt "dexec ❯" | awk '{print $1}')
-    if [ -n "$destination" ]; then
-        docker exec -it ${destination} /bin/bash
-        if [ $status != 0 ]; then
-            docker exec -it ${destination} sh
-        fi
-    fi
-}
-alias dexec=peco-docker-exec
+zle -N peco-select-history;bindkey '^r' peco-select-history # history with peco
+zle -N peco-cdr; bindkey '^t' peco-cdr # cdr with peco
+alias ghd=peco-ghq-cd # ghq with vscode
+alias ghv=peco-ghq-code # ghq with vscode
+alias ghi=peco-ghq-idea # ghq with vscode
+alias ghw=peco-ghq-gh # ghq with github-cli web
+alias dexec=peco-docker-exec # docker with peco
 
 precmd() {
     git_prompt

@@ -1,0 +1,51 @@
+function peco-select-history() {
+    BUFFER=$(history -n 1 | tail -r | awk '!a[$0]++' | peco --prompt "history ❯")
+    CURSOR=$#BUFFER
+    zle clear-screen
+}
+
+function peco-ghq-cd() {
+    local destination=$(ghq list -p | peco --prompt "ghv ❯")
+    if [ -n "$destination" ]; then
+        cd ${destination}
+    fi
+}
+
+function peco-cdr() {
+    local destination="$(cdr -l | sed 's/^[0-9]* *//' | peco --prompt "cdr ❯" --query "$LBUFFER")"
+    if [ -n "$destination" ]; then
+        BUFFER="cd $destination"
+        zle accept-line
+    fi
+}
+
+function peco-ghq-code() {
+    local destination=$(ghq list -p | peco --prompt "ghv ❯")
+    if [ -n "$destination" ]; then
+        code ${destination}
+    fi
+}
+
+function peco-ghq-idea() {
+    local destination=$(ghq list -p | peco --prompt "ghv ❯")
+    if [ -n "$destination" ]; then
+        idea ${destination}
+    fi
+}
+
+function peco-ghq-gh() {
+    local destination=$(gh repo list | awk '{print $1}' | peco --prompt "ghw ❯")
+    if [ -n "$destination" ]; then
+        gh repo view -w ${destination}
+    fi
+}
+
+function peco-docker-exec() {
+    local destination=$(docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Command}}\t{{.Status}}\t{{.Names}}" | sed 1d | peco --prompt "dexec ❯" | awk '{print $1}')
+    if [ -n "$destination" ]; then
+        docker exec -it ${destination} /bin/bash
+        if [ $status != 0 ]; then
+            docker exec -it ${destination} sh
+        fi
+    fi
+}
